@@ -1,13 +1,25 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import Home from './page/Home'
+import DashboardLayout from './Layout/DashboardLayout'
+import Produck from './page/Produck'
+import Profile from './page/Profile'
 
 const App = () => {
   return (
-    <Route>
-      <Route>
-        <Routes path="/" element={''}/>
+    <Routes>
+      <Route element={<DashboardLayout/>}>
+        <Route path="/" element={ <Home/>}/>
+        <Route path="/product" element={ <Produck/>}/>
+        <Route path="/profile" element={ <Profile/>}/>
+           <Route path='*' element={ 
+          <div className='w-full h-screen flex items-center justify-center flex-col bg-emerald-600 text-white text-center'>
+              <h1 className='text-4xl mb-3 font-bold' >404</h1>
+              <p>Page Tidak Tersedia</p> 
+          </div>
+         } />
       </Route>
-    </Route>
+    </Routes>
   )
 }
 

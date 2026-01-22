@@ -44,7 +44,7 @@ const Sidebar = () => {
         mode="inline"
         className="w-full p-2"
         theme="dark"
-        defaultSelectedKeys={['/']}
+        defaultSelectedKeys={'/'}
         selectedKeys={[location.pathname]}
         onClick={({ key }) => navigate(key)}
         inlineCollapsed={toggle}

@@ -1,12 +1,17 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
+import Header from '../components/Header'
+import { Outlet } from 'react-router-dom'
 
 const DashboardLayout = () => {
   return (
     <div className='w-screen h-screen flex'>
       <Sidebar />
        <div className='flex-1'>
-         ini header content
+           <Header/>
+           <div className='flex-1 p-5'>
+            <Outlet/>
+           </div>
        </div>
     </div>
   )
