@@ -2,15 +2,15 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from './page/Home'
 import DashboardLayout from './Layout/DashboardLayout'
-import Produck from './page/Produck'
 import Profile from './page/Profile'
+import Product from './page/Product'
 
 const App = () => {
   return (
     <Routes>
       <Route element={<DashboardLayout/>}>
         <Route path="/" element={ <Home/>}/>
-        <Route path="/product" element={ <Produck/>}/>
+        <Route path="/product" element={ <Product/>}/>
         <Route path="/profile" element={ <Profile/>}/>
            <Route path='*' element={ 
           <div className='w-full h-screen flex items-center justify-center flex-col bg-emerald-600 text-white text-center'>
