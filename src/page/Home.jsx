@@ -1,60 +1,105 @@
-import React from 'react'
-import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import React, { useEffect, useState } from "react";
+import { supabase } from "../utils/supabase";
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  LabelList,
+} from "recharts";
 
 const Home = () => {
-  const data = [
-    {
-      key: 1,
-      product: "Oli Mesin Federal",
-      stock: 4
-    },
-    {
-      key: 2,
-      product: "Bearing 6201",
-      stock: 4
-    },
-    {
-      key: 3,
-      product: "Bearing 6301",
-      stock: 4
-    },
-    {
-      key: 4,
-      product: "Bearing 6300",
-      stock: 10
-    },
-    {
-      key: 5,
-      product: "Seal Master Rem kvy",
-      stock: 8
-    },
-    {
-      key: 6,
-      product: "Seal Master Rem ket",
-      stock: 4
-    },
-    {
-      key: 7,
-      product: "Seal Kruk As kvb",
-      stock: 3
-    },
-  ];
+  const [products, setProducts] = useState([]);
+
+  // ambil data dari Supabase
+  const getProducts = async () => {
+    const { data, error } = await supabase
+      .from("product")
+      .select("*");
+
+    if (!error && data) {
+      // 🔥 FIX UTAMA: pastikan stock angka & anti NaN
+      const fixedData = data.map((item) => ({
+        ...item,
+        stock:
+          item.stock === null ||
+          item.stock === undefined ||
+          item.stock === ""
+            ? 0
+            : Number(item.stok),
+      }));
+
+      setProducts(fixedData);
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+
+    // realtime supabase
+    const channel = supabase
+      .channel("realtime-product")
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "product",
+        },
+        () => {
+          getProducts();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  // urutkan dari stok terbesar
+  const sortedProducts = [...products].sort(
+    (a, b) => b.stok - a.stok
+  );
 
   return (
-    <div className='p-5 w-full bg-blue-300/30 rounded-md' >
-      <h2 className='text-lg font-semibold text-gray-600 mb-10' >Product</h2>
-      <ResponsiveContainer width={'100%'} height={300}>
-        <BarChart
-          data={data}
-        >
-          <XAxis dataKey={'product'}/>
-          <YAxis/>
-          <Tooltip/>
-          <Bar dataKey="stock" fill="#8884d8" />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
-  )
-}
+    <div style={{ padding: 20 }}>
+      <h2>Stock Product</h2>
 
-export default Home
+      {/* list text */}
+      {sortedProducts.map((item) => (
+        <p key={item.id}>
+          {item.nama_sparepart} : {item.stok}
+        </p>
+      ))}
+
+      {/* chart */}
+      {sortedProducts.length > 0 && (
+        <ResponsiveContainer width="100%" height={320}>
+          <BarChart data={sortedProducts}>
+            <XAxis dataKey="nama_sparepart" />
+            <YAxis allowDecimals={false} />
+            <Tooltip />
+
+            <Bar
+              dataKey="stok"
+              fill="#3b82f6"
+              radius={[6, 6, 0, 0]}
+            >
+              {/* 🔢 ANGKA STOK PASTI MUNCUL */}
+              <LabelList
+                dataKey="stok"
+                position="top"
+                formatter={(value) => value}
+              />
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      )}
+    </div>
+  );
+};
+
+export default Home;
