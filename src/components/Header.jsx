@@ -17,7 +17,7 @@ const Header = () => {
     ]
   return (
       <div className='w-full p-5 shadow-md bg-white flex items-center justify-between' >
-        <h1 className='text-xl font-bold text-gray-700' >Ghania Dashboard</h1>
+        <h1 className='text-xl font-bold text-gray-700' >Panjoel Garage Dashboard</h1>
         <Dropdown menu={{ items }} placement='bottom' >
             <h1 className='hover:cursor-pointer' >
                 Panjoel
