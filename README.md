@@ -1,16 +1,46 @@
-# React + Vite
+📊 Dashboard Management – Stock Panjoel Garage
+🇬🇧 English Version
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Stock Panjoel Garage Dashboard is a web-based management system designed to help manage product inventory, monitor stock levels, and organize shop data efficiently in real time.
 
-Currently, two official plugins are available:
+This dashboard is built using React.js for a dynamic and responsive user interface, Tailwind CSS for modern and clean styling, and Ant Design (AntD) for ready-to-use UI components such as tables, forms, and layouts.
+For the backend, Supabase is used as a Backend-as-a-Service (BaaS), providing a PostgreSQL database, authentication, and real-time data synchronization.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Key Features:
 
-## React Compiler
+📦 Product and stock management
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🔄 Real-time data updates using Supabase
 
-## Expanding the ESLint configuration
+📊 Interactive tables and dashboard layout with Ant Design
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🎨 Responsive and modern UI with Tailwind CSS
+
+🔐 Secure data handling with Supabase backend
+
+⚡ Fast and scalable frontend using React
+
+This project is suitable for small to medium workshops or stores that need a simple yet powerful stock management system.
+
+🇮🇩 Versi Bahasa Indonesia
+
+Dashboard Management Stock Panjoel Garage adalah aplikasi berbasis web yang dirancang untuk membantu pengelolaan data produk, stok barang, serta monitoring inventori toko secara real-time.
+
+Aplikasi ini dibangun menggunakan React.js sebagai frontend utama untuk menciptakan antarmuka yang dinamis dan interaktif, Tailwind CSS untuk tampilan yang modern dan responsif, serta Ant Design (AntD) sebagai UI library yang menyediakan komponen seperti tabel, form, dan layout dashboard.
+Untuk sisi backend, aplikasi ini menggunakan Supabase yang berfungsi sebagai database PostgreSQL, autentikasi, dan layanan real-time data.
+
+Fitur Utama:
+
+📦 Manajemen produk dan stok barang
+
+🔄 Data otomatis ter-update secara real-time
+
+📊 Tampilan tabel dan dashboard menggunakan Ant Design
+
+🎨 Desain modern dan responsif dengan Tailwind CSS
+
+🔐 Pengelolaan data yang aman dengan Supabase
+
+⚡ Performa cepat dan scalable menggunakan React
+
+Project ini cocok digunakan untuk bengkel atau toko skala kecil hingga menengah yang membutuhkan sistem manajemen stok yang sederhana namun efektif.
